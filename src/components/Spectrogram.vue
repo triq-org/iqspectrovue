@@ -18,17 +18,17 @@
       </v-btn>
 
       <v-select
-        v-model="width"
-        :items="widths"
-        @change="spectroplot.setOption('n', width)"
+        v-model="fftN"
+        :items="fftNs"
+        @change="spectroplot.setOption('fftN', fftN)"
         label="FFT window width"
         class="hidden-sm-and-down"
         hide-details
       ></v-select>
       <v-select
-        v-model="window"
-        :items="windows"
-        @change="spectroplot.setOption('windowf', window)"
+        v-model="windowF"
+        :items="windowFs"
+        @change="spectroplot.setOption('windowF', windowF)"
         label="FFT windowing function"
         class="hidden-lg-and-down"
         hide-details
@@ -145,9 +145,9 @@
               <v-card-text>
 
                 <v-select
-                  v-model="width"
-                  :items="widths"
-                  @change="spectroplot.setOption('n', width)"
+                  v-model="fftN"
+                  :items="fftNs"
+                  @change="spectroplot.setOption('fftN', fftN)"
                   label="Select the FFT window width (number of different frequencies)"
                 ></v-select>
                 <v-select
@@ -157,9 +157,9 @@
                   label="Select the FFT window height (independent of N)"
                 ></v-select>
                 <v-select
-                  v-model="window"
-                  :items="windows"
-                  @change="spectroplot.setOption('windowf', window)"
+                  v-model="windowF"
+                  :items="windowFs"
+                  @change="spectroplot.setOption('windowF', windowF)"
                   label="Select the FFT windowing function"
                   cols="4" class="flex-grow-1 flex-shrink-1"
                 ></v-select>
@@ -266,9 +266,9 @@ export default {
     infoView: false,
     tab: null,
 
-    width: 512,
+    fftN: 512,
     height: 512,
-    window: 'blackmanHarris',
+    windowF: 'blackmanHarris',
     zoom: 1,
     gain: 6,
     range: 30,
@@ -278,7 +278,7 @@ export default {
     histWidth: 100,
     channelMode: 'I/Q',
 
-    widths: [
+    fftNs: [
       {text: 'N=1024', value: 1024},
       {text: 'N=512', value: 512},
       {text: 'N=256', value: 256},
@@ -292,7 +292,7 @@ export default {
       {text: '256px', value: 256},
       {text: '128px', value: 128},
     ],
-    windows: [
+    windowFs: [
       {text: 'Rectangular', value: 'rectangular'},
       {text: 'Bartlett', value: 'bartlett'},
       {text: 'Hamming', value: 'hamming'},
@@ -382,7 +382,7 @@ export default {
       options.histWidth = 0
     }
     if (h < 768) {
-      options.n = 256
+      options.fftN = 256
       options.height = 0
     }
     this.spectroplot = new Spectroplot(options)
