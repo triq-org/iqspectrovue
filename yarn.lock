@@ -7054,9 +7054,9 @@ sass-loader@^8.0.2:
     semver "^6.3.0"
 
 sass@^1.25.0:
-  version "1.30.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.30.0.tgz#60bbbbaf76ba10117e61c6c24f00161c3d60610e"
-  integrity sha512-26EUhOXRLaUY7+mWuRFqGeGGNmhB1vblpTENO1Z7mAzzIZeVxZr9EZoaY1kyGLFWdSOZxRMAufiN2mkbO6dAlw==
+  version "1.32.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.32.0.tgz#10101a026c13080b14e2b374d4e15ee24400a4d3"
+  integrity sha512-fhyqEbMIycQA4blrz/C0pYhv2o4x2y6FYYAH0CshBw3DXh5D5wyERgxw0ptdau1orc/GhNrhF7DFN2etyOCEng==
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 
@@ -7440,10 +7440,10 @@ spdy@^4.0.2:
     select-hose "^2.0.0"
     spdy-transport "^3.0.0"
 
-spectroplot@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/spectroplot/-/spectroplot-1.1.0.tgz#e6f6f0b9318f15636f21efed793cd09798125121"
-  integrity sha512-0BnaALXqc+Vc1DqRFFiXrNUH7T33MprJObsryPx5L0i/6R5n/IaHREar1OtJZbKu/jp8m3d+rTrLCYswma3/xw==
+spectroplot@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/spectroplot/-/spectroplot-1.2.0.tgz#ef358aca1b5f315ecc2940995b5b7a8599553ee6"
+  integrity sha512-JgMdLO62K3uxJ+mUs1QX2tWxYpJja3V+/vyt3VMuo5d/wBgbbkuSy65sR/uQH4I5Pfg8bbjG4yOF5A4rIzs9Nw==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"

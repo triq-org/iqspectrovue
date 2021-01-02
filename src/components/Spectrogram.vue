@@ -17,6 +17,56 @@
         <v-icon>info</v-icon>
       </v-btn>
 
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+            @click="spectroplot.zoomOut()"
+            text
+            icon
+          >
+            <v-icon>zoom_out</v-icon>
+          </v-btn>
+        </template>
+        <span>Zoom Out (also Ctrl/Alt + Mousewheel)</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+            @click="spectroplot.zoomFit()"
+            text
+            icon
+          >
+            <v-icon>zoom_out_map</v-icon>
+          </v-btn>
+        </template>
+        <span>Zoom to Fit</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+            @click="spectroplot.zoomIn()"
+            text
+            icon
+          >
+            <v-icon>zoom_in</v-icon>
+          </v-btn>
+        </template>
+        <span>Zoom In (also Ctrl/Alt + Mousewheel)</span>
+      </v-tooltip>
+      <v-select
+        v-model="height"
+        :items="heights"
+        @change="spectroplot.setOption('height', height)"
+        label="Display size"
+        class="hidden-sm-and-down"
+        hide-details
+      ></v-select>
       <v-select
         v-model="fftN"
         :items="fftNs"
@@ -31,14 +81,6 @@
         @change="spectroplot.setOption('windowF', windowF)"
         label="FFT windowing function"
         class="hidden-lg-and-down"
-        hide-details
-      ></v-select>
-      <v-select
-        v-model="zoom"
-        :items="zooms"
-        @change="spectroplot.setOption('zoom', zoom)"
-        label="Zoom level (magnification factor)"
-        class="hidden-sm-and-down"
         hide-details
       ></v-select>
       <v-select
@@ -78,6 +120,14 @@
         :items="minmaxHeights"
         @change="spectroplot.setOption('minmaxHeight', minmaxHeight)"
         label="Decibel bar style"
+        class="hidden-lg-and-down"
+        hide-details
+      ></v-select>
+      <v-select
+        v-model="turnFlip"
+        :items="turnFlips"
+        @change="spectroplot.setOption('turnFlip', turnFlip)"
+        label="Display orientation"
         class="hidden-lg-and-down"
         hide-details
       ></v-select>
@@ -200,6 +250,12 @@
                   label="Select a style for the decibel bar"
                 ></v-select>
                 <v-select
+                  v-model="turnFlip"
+                  :items="turnFlips"
+                  @change="spectroplot.setOption('turnFlip', turnFlip)"
+                  label="Select an orientation style for the display"
+                ></v-select>
+                <v-select
                   v-model="histWidth"
                   :items="histWidths"
                   @change="spectroplot.setOption('histWidth', histWidth)"
@@ -275,6 +331,7 @@ export default {
     cmap: 'cube1',
     ampHeight: 0,
     minmaxHeight: 16,
+    turnFlip: 'spectrogram',
     histWidth: 100,
     channelMode: 'I/Q',
 
@@ -357,6 +414,10 @@ export default {
       {text: 'dB bar off', value: 0},
       {text: 'dB tiny', value: 16},
       {text: 'dB full', value: 256},
+    ],
+    turnFlips: [
+      {text: 'Spectrogram', value: 'spectrogram'},
+      {text: 'Waterfall', value: 'waterfall'},
     ],
     histWidths: [
       {text: 'Hist off', value: 0},
