@@ -31,9 +31,9 @@
       </v-menu>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <spectrogram-list/>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -46,7 +46,9 @@ export default {
     SpectrogramList,
   },
   data: () => ({
-    themeDark: new Date().getHours() % 18 < 8, /* 18:00 to 8:00 is night time */
+    themeDark: window.matchMedia
+      && window.matchMedia('(prefers-color-scheme: dark)').matches
+      || new Date().getHours() % 18 < 8, /* 18:00 to 8:00 is night time */
     links: [
       {text: 'rtl_433', link: "https://github.com/merbanan/rtl_433/"},
       {text: 'rtl_433_tests', link: "https://github.com/merbanan/rtl_433_tests/"},
@@ -57,6 +59,10 @@ export default {
   }),
   created () {
     this.$vuetify.theme.dark = this.themeDark
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      this.themeDark = event.matches
+      this.$vuetify.theme.dark = this.themeDark
+    })
   },
 }
 </script>

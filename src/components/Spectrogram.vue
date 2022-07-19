@@ -305,7 +305,7 @@
 </template>
 
 <script>
-import SpectroplotWorker from 'worker-loader?filename=js/spectroplot.[hash].worker.js!spectroplot/lib/worker.js'
+import SpectroplotWorker from 'worker-loader?filename=js/spectroplot.[contenthash].worker.js!spectroplot/lib/worker.js'
 import { Spectroplot } from 'spectroplot'
 import 'spectroplot/lib/styles.css'
 // we could start workers eagerly with:
